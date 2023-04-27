@@ -46,19 +46,32 @@ class Database{
   // await insertUser(fido);
 
   Future<List<UserModel>> users() async {
-  // Get a reference to the database.
-  final db = await openDB();
+    // Get a reference to the database.
+    final db = await openDB();
 
-  // Query the table for all The Dogs.
-  final List<Map<String, dynamic>> maps = await db.query('user');
+    // Query the table for all The Dogs.
+    final List<Map<String, dynamic>> maps = await db.query('user');
 
-  // Convert the List<Map<String, dynamic> into a List<Dog>.
-  return List.generate(maps.length, (i) {
-    return UserModel(
-      id: maps[i]['id'],
-      username: maps[i]['username'],
-      password: maps[i]['password'],
-    );
-  });
-}
+    // Convert the List<Map<String, dynamic> into a List<Dog>.
+    return List.generate(maps.length, (i) {
+      return UserModel(
+        id: maps[i]['id'],
+        username: maps[i]['username'],
+        password: maps[i]['password'],
+      );
+    });
+
+  }
+  Future<List<UserModel>> getUser(int user) async {
+    final db = await openDB();
+
+    final List<Map<String, dynamic>> userDb = await db.query('user', where:'id = ?', whereArgs:[user]);
+    return List.generate(userDb.length, (i) {
+      return UserModel(
+        id: userDb[i]['id'],
+        username: userDb[i]['username'],
+        password: userDb[i]['password'],
+      );
+    });
+  }
 }

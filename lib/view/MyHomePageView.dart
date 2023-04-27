@@ -102,9 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                         username_input.text = '';
                         password_input.text = '';
-                        await Navigator.popAndPushNamed(context, '/listagem');
+                        Navigator.popAndPushNamed(context, '/listagem');
                       },
-                      child: Text('Calcular'),
+                      child: Text('Cadastrar'),
                     ),
                   ),
                   Center(

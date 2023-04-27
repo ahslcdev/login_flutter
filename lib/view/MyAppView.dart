@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(),
       routes: {
         '/listagem': (context) => const ListagemView(),
+        '/listagem-especifica': (context) => const ListagemEspecificaView(),
       },
     );
   }
